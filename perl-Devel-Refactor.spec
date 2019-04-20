@@ -4,11 +4,11 @@
 #
 Name     : perl-Devel-Refactor
 Version  : 0.05
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdevel-refactor-perl/libdevel-refactor-perl_0.05-2.debian.tar.xz
-Summary  : No detailed summary available
+Summary  : Devel::Refactor - Perl extension for refactoring Perl code
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
 Requires: perl-Devel-Refactor-license = %{version}-%{release}
@@ -28,6 +28,7 @@ the sub.
 Summary: dev components for the perl-Devel-Refactor package.
 Group: Development
 Provides: perl-Devel-Refactor-devel = %{version}-%{release}
+Requires: perl-Devel-Refactor = %{version}-%{release}
 
 %description dev
 dev components for the perl-Devel-Refactor package.
@@ -46,7 +47,7 @@ license components for the perl-Devel-Refactor package.
 cd ..
 %setup -q -T -D -n Devel-Refactor-0.05 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Devel-Refactor-0.05/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Devel-Refactor-0.05/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
