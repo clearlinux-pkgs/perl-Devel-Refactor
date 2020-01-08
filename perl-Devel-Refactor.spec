@@ -4,14 +4,15 @@
 #
 Name     : perl-Devel-Refactor
 Version  : 0.05
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdevel-refactor-perl/libdevel-refactor-perl_0.05-2.debian.tar.xz
-Summary  : Devel::Refactor - Perl extension for refactoring Perl code
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
 Requires: perl-Devel-Refactor-license = %{version}-%{release}
+Requires: perl-Devel-Refactor-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -42,18 +43,28 @@ Group: Default
 license components for the perl-Devel-Refactor package.
 
 
+%package perl
+Summary: perl components for the perl-Devel-Refactor package.
+Group: Default
+Requires: perl-Devel-Refactor = %{version}-%{release}
+
+%description perl
+perl components for the perl-Devel-Refactor package.
+
+
 %prep
 %setup -q -n Devel-Refactor-0.05
-cd ..
-%setup -q -T -D -n Devel-Refactor-0.05 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libdevel-refactor-perl_0.05-2.debian.tar.xz
+cd %{_builddir}/Devel-Refactor-0.05
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Devel-Refactor-0.05/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Devel-Refactor-0.05/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -63,7 +74,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -72,7 +83,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Devel-Refactor
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Devel-Refactor/deblicense_copyright
+cp %{_builddir}/Devel-Refactor-0.05/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Devel-Refactor/f78fc279a005b54792cd9db0d5d22a7ac6acb840
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -85,7 +96,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Devel/Refactor.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -93,4 +103,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Devel-Refactor/deblicense_copyright
+/usr/share/package-licenses/perl-Devel-Refactor/f78fc279a005b54792cd9db0d5d22a7ac6acb840
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Devel/Refactor.pm
