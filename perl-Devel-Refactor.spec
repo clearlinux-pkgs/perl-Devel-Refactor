@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-Refactor
 Version  : 0.05
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdevel-refactor-perl/libdevel-refactor-perl_0.05-2.debian.tar.xz
@@ -83,7 +83,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Devel-Refactor
-cp %{_builddir}/Devel-Refactor-0.05/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Devel-Refactor/f78fc279a005b54792cd9db0d5d22a7ac6acb840
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Devel-Refactor/f78fc279a005b54792cd9db0d5d22a7ac6acb840
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -107,4 +107,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Devel/Refactor.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Devel/Refactor.pm
