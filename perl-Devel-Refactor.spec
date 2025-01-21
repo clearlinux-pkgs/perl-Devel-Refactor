@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-Refactor
 Version  : 0.05
-Release  : 28
+Release  : 29
 URL      : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SS/SSOTKA/Devel-Refactor-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libd/libdevel-refactor-perl/libdevel-refactor-perl_0.05-2.debian.tar.xz
